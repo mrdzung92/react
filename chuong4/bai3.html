@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const courses = [{
+            "id": 15,
+            "title": "HTML CSS Pro",
+            "description": "T\u1eeb c\u01a1 b\u1ea3n t\u1edbi chuy\u00ean s\u00e2u, th\u1ef1c h\u00e0nh 8 d\u1ef1 \u00e1n, h\u00e0ng tr\u0103m b\u00e0i t\u1eadp, trang h\u1ecfi \u0111\u00e1p ri\u00eang, c\u1ea5p ch\u1ee9ng ch\u1ec9 sau kh\u00f3a h\u1ecdc v\u00e0 mua m\u1ed9t l\u1ea7n h\u1ecdc m\u00e3i m\u00e3i.",
+            "image": "courses\/15\/62f13d2424a47.png",
+            "published_at": "2022-08-18T17:00:00.000000Z",
+            "image_url": "https:\/\/files.fullstack.edu.vn\/f8-prod\/courses\/15\/62f13d2424a47.png",
+        },
+        {
+            "id": 19,
+            "title": "JavaScript Pro",
+            "description": "Kh\u00f3a h\u1ecdc JavaScript Pro",
+            "image": "courses\/19\/62f13cb607b4b.png",
+            "published_at": "2023-04-30T17:00:00.000000Z",
+            "image_url": "https:\/\/files.fullstack.edu.vn\/f8-prod\/courses\/19\/62f13cb607b4b.png",
+        },
+        {
+            "id": 20,
+            "title": "ReactJS Pro",
+            "description": "Kh\u00f3a h\u1ecdc ReactJS Pro",
+            "image": "courses\/20\/62f13dded314e.png",
+            "published_at": "2023-07-31T17:00:00.000000Z",
+            "image_url": "https:\/\/files.fullstack.edu.vn\/f8-prod\/courses\/20\/62f13dded314e.png",
+        }
+        ]
+        const PostItem = ({ course , handler }) => {
+
+            return (
+
+                <div className="post-item">
+                    <img src={course.image_url} alt={course.image} />
+                    <h2 onClick={() => { handler(course.title)}}
+                        className="post-title">{course.title}</h2>
+                    <p className="post-desc">{course.description}</p>
+                    <p className="post-published">{course.published_at}</p>
+                </div>)
+        }
+
+
+        const Postlist = () => {
+            const AlertCourseName = (name)=>{
+                alert(name);
+            }
+            return (<div className="post-list">
+                {courses.map(course =>
+                    < PostItem
+                        handler ={AlertCourseName}
+                        key={course.id} 
+                        course={course} />
+                )}
+            </div>)
+        }
+
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<Postlist />)
+    </script>
+</body>
+
+</html>

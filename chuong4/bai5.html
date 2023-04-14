@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- Quy ước đặt tên components? -->
+
+    <div id="root"></div>
+    <div id="root2"></div>
+
+
+    <script type="text/babel"> 
+  // vi du 1  
+    const Form ={
+        Input() {
+            return <input type="text" />
+        },  
+
+        Checkbox() {
+            return <input type="checkbox" />
+        },
+    }
+
+
+    function Button ({title,href,onClick}){
+        /* 
+        Các tham số truyền vào:
+
+title: là nội dung hiển thị trên button hoặc link
+href: là đường dẫn khi component Button được render ra là một link
+onClick: là hàm xử lý sự kiện click trên button khi component Button được render ra là một button
+Một số giải thích cho đoạn mã:
+
+Biến Component được khởi tạo là 'button' nhưng nếu prop href tồn tại thì giá trị của Component sẽ được thay đổi thành 'a' để render ra một link.
+Biến props được sử dụng để lưu trữ các props của component và sẽ được truyền vào trong phần tử JSX thông qua cú pháp {...props}, để đảm bảo rằng tất cả các props đều được truyền vào component được render ra.
+Nếu prop onClick tồn tại, hàm xử lý sự kiện này sẽ được gán cho props.onClick để xử lý sự kiện click trên button.
+        */
+
+        let Component = 'button'
+        let props = {}
+        if(onClick){
+            props.onClick =onClick
+        }
+
+        if(href){
+            Component = 'a'
+            props.href =href
+        }
+       
+        return (
+            <Component {...props}>{title}</Component>
+        )
+    }
+        const  App = ()=> {
+            const type = 'Checkbox';
+            let Component = Form[type];
+           return (
+            <div>
+              <Form.Input />
+              <Component/>
+              <Button 
+              title ='click me !'
+              href = 'https://google.com'
+              onClick ={()=>{ console.log(Math.random())}}
+              />
+           </div>)
+        }     
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>)
+
+
+
+    </script>
+</body>
+
+</html>

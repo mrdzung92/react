@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+        <div id="root"></div>
+        <script type="text/babel">
+
+            const courses = [
+               { name:'Javascript'},
+               { name:'ReactJS'},
+               { name:'PHP'}
+            ]
+            const ul = 
+            <ul className="course-list">
+               {courses.map((course,i)=><li key={i}>{course.name}</li>)}
+            </ul>
+            ReactDOM.createRoot(document.getElementById('root')).render(ul)
+        </script>
+</body>
+</html>
