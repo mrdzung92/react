@@ -9,6 +9,7 @@ import images from '~/assets/images'
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 const cx = classNames.bind(styles)
 
 
@@ -56,7 +57,8 @@ function Header() {
                 </div>
             </Tippy>
             <div className={cx('actions')}>
-
+                <Button text>Upload</Button>
+                <Button primary >Log In</Button>
             </div>
         </div>
     </header>
