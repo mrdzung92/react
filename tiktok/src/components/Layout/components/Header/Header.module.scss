@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 var(--default-layout-horizontal-spacer);
 }
 .search,
 .search-result {
@@ -87,9 +88,31 @@
     }
 }
 
+.actions {
+    display: flex;
+    align-items: center;
+}
 .more-btn {
     font-size: 2rem;
     margin-left: 28px;
     padding: 4px 8px;
     background: transparent;
+    cursor: pointer;
+}
+
+.action-btn {
+    color: #161823;
+    background-color: transparent;
+    font-size: 2.2rem;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 12px;
 }
