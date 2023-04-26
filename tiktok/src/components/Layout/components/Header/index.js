@@ -11,6 +11,8 @@ import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical, faEart
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { UploadIcon } from '~/components/icons';
+import Image from '~/components/image';
 const cx = classNames.bind(styles)
 const MENU_ITEMS = [
     {
@@ -120,7 +122,7 @@ function Header() {
                 {currentUser ? (
                     <Tippy delay={[0, 200]} content="Upload video" placement='bottom'>
                         <button className={cx('action-btn')}>
-                            <FontAwesomeIcon icon={faCloudUpload} />
+                            <UploadIcon />
                         </button>
                     </Tippy>
 
@@ -137,7 +139,11 @@ function Header() {
                     onChange={handleMenuChange}
                 >
                     {currentUser ? (
-                        <img className={cx('user-avatar')} src="https://adoreyou.vn/wp-content/uploads/cute-hot-girl-700x961.jpg" alt="nguyen van a" />
+                        <Image className={cx('user-avatar')}
+                            src="https://adoreyou.vn/wp-content/uploads/cute-hot-girl-700x961.jpg"
+                            alt="nguyen van a"
+                            failback='https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png'
+                        />
                     ) : (
                         <button className={cx('more-btn')} >
                             <FontAwesomeIcon icon={faEllipsisVertical} />
