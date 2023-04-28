@@ -5,6 +5,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { SearchIcon } from '~/components/icons';
+import { useDebounce } from '~/hooks';
 import classNames from 'classnames/bind';
 import styles from './search.module.scss'
 
@@ -16,6 +17,7 @@ function Search() {
     const inputRef = useRef()
     const [showResult, setShowResult] = useState(true)
     const [loading, setLoading] = useState(false)
+    const debounce = useDebounce(searchValue, 500)
 
     const handleClear = () => {
         setSearchValue('')
@@ -27,12 +29,13 @@ function Search() {
         setShowResult(false)
     }
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounce.trim()) {
             setsearchResults([])
             return
         }
         setLoading(true)
-        fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+
+        fetch(` https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
             .then(res => res.json())
             .then(res => {
                 setsearchResults(res.data)
@@ -42,7 +45,7 @@ function Search() {
             })
 
 
-    }, [searchValue])
+    }, [debounce])
     return (
         <HeadlessTippy
             visible={(showResult && searchResults.length > 0)}
